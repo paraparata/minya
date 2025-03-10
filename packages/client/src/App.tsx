@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { createSocket, WSSendMethod } from "./libs/useSocket";
+import { createSocket } from "./libs/useSocket";
 
 type SocketRes =
   | {
@@ -18,9 +18,7 @@ type SocketReq = {
   message: any;
 };
 
-const useSockety = createSocket<SocketRes>();
-const socketySend: WSSendMethod<SocketReq> = (...args) =>
-  useSockety.send(...args);
+const useSockety = createSocket<SocketRes, SocketReq>();
 
 const Status = () => {
   const readyState = useSockety((s) => s.readyState);
